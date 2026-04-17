@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #F2F0EC;
+    color: #1A1A1A;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  #root {
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    html, body {
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: auto;
+      min-height: 100%;
+    }
+    #root {
+      height: auto;
+      min-height: 100%;
+    }
+  }
+
+  @media (hover: none) {
+    .project-preview-tooltip {
+      display: none !important;
+    }
+  }
+
+  ::selection {
+    background: #E4FC50;
+    color: #2D5AFF;
+  }
+
+  /* REC double-blink pattern */
+  @keyframes rec-blink {
+    0%, 10% { opacity: 1; }
+    15%, 25% { opacity: 0; }
+    30%, 40% { opacity: 1; }
+    45%, 100% { opacity: 0.3; }
+  }
+  .rec-blink {
+    animation: rec-blink 2s ease-in-out infinite;
+  }
+
+  /* Bento card hover — also fires on touch via :active */
+  .bento-card {
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .bento-card:hover,
+  .bento-card:active {
+    transform: scale(1.02) translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+
+  /* Playhead glow */
+  @keyframes playhead-glow {
+    0%, 100% { box-shadow: 0 0 4px rgba(255,80,80,0.4); }
+    50% { box-shadow: 0 0 12px rgba(255,80,80,0.7); }
+  }
+  .playhead-glow {
+    animation: playhead-glow 2s ease-in-out infinite;
+  }
+
+  /* Shimmer sweep - single run */
+  @keyframes shimmer-sweep {
+    0% { transform: translateX(-120%); }
+    100% { transform: translateX(120%); }
+  }
+
+  /* Skill pill glow on hover — also fires on touch via :active */
+  .skill-pill {
+    transition: all 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .skill-pill:hover,
+  .skill-pill:active {
+    box-shadow: inset 0 0 12px rgba(63, 224, 106, 0.35);
+    transform: translateY(-2px);
+  }
+
+  /* Timeline draw animation */
+  @keyframes draw-line {
+    from { height: 0; }
+    to { height: 100%; }
+  }
+  .timeline-line {
+    animation: draw-line 1.2s ease-out forwards;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
