@@ -1250,7 +1250,7 @@ function SectionContent({ id, textColor, onExport, onViewWork, isActive, isMobil
                 />
               ))}
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2.5">
               {[
                 { period: 'Jun 2025 · Now', role: 'Content Creator', company: 'Instagram · @yourstrulyaariya', desc: 'Grew to 26,000+ followers in under a year. 500+ videos edited. Built engagement strategy driving 2M+ impressions.', rotate: '-1.5deg' },
                 { period: 'Sep 2025 · Now', role: 'Multimedia Creator', company: 'Project Humanities · ASU', desc: 'Produce campaign videos and visual content for ASU\u2019s humanities initiative.', rotate: '0.5deg' },
@@ -1259,17 +1259,17 @@ function SectionContent({ id, textColor, onExport, onViewWork, isActive, isMobil
               ].map((e) => (
                 <div
                   key={e.role}
-                  className="p-5 rounded-2xl backdrop-blur-sm"
+                  className="px-4 py-3 rounded-2xl backdrop-blur-sm"
                   style={{
                     background: tc + '0A',
                     border: `1px solid ${tc}20`,
                     transform: `rotate(${e.rotate})`,
                   }}
                 >
-                  <span className="font-mono text-[11px] opacity-40" style={{ color: tc }}>{e.period}</span>
-                  <h3 className="font-display font-bold text-lg mt-1" style={{ color: tc }}>{e.role}</h3>
-                  <p className="text-xs opacity-40 mb-1.5" style={{ color: tc }}>{e.company}</p>
-                  <p className="text-sm leading-relaxed opacity-60" style={{ color: tc }}>{e.desc}</p>
+                  <span className="font-mono text-[10px] opacity-40" style={{ color: tc }}>{e.period}</span>
+                  <h3 className="font-display font-bold text-[15px] md:text-base mt-0.5" style={{ color: tc }}>{e.role}</h3>
+                  <p className="text-[11px] opacity-40 mb-1" style={{ color: tc }}>{e.company}</p>
+                  <p className="text-[12px] leading-snug opacity-60" style={{ color: tc }}>{e.desc}</p>
                 </div>
               ))}
             </div>
