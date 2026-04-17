@@ -1235,7 +1235,7 @@ function SectionContent({ id, textColor, onExport, onViewWork, isActive, isMobil
                   transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
                 />
               )}
-              {[0, 1, 2].map((i) => (
+              {[0, 1, 2, 3].map((i) => (
                 <motion.div
                   key={i}
                   className="w-2.5 h-2.5 rounded-full border-2 relative z-10 shrink-0"
@@ -1253,8 +1253,9 @@ function SectionContent({ id, textColor, onExport, onViewWork, isActive, isMobil
             <div className="flex flex-col gap-4">
               {[
                 { period: 'Jun 2025 · Now', role: 'Content Creator', company: 'Instagram · @yourstrulyaariya', desc: 'Grew to 26,000+ followers in under a year. 500+ videos edited. Built engagement strategy driving 2M+ impressions.', rotate: '-1.5deg' },
-                { period: 'Dec 2025 · Feb 2026', role: 'Full Stack Engineer Intern', company: 'Autonorm AI · India', desc: 'Short full-stack internship at an India-based AI startup building business-automation tools.', rotate: '0.5deg' },
+                { period: 'Sep 2025 · Now', role: 'Multimedia Creator', company: 'Project Humanities · ASU', desc: 'Produce campaign videos and visual content for ASU\u2019s humanities initiative.', rotate: '0.5deg' },
                 { period: 'Sep 2024 · May 2025', role: 'Cofounder & AI Engineer', company: 'Brev', desc: 'Built an AI study tool that turns notes into cheat sheets, quizzes, and memory aids. Scaled to a 2,000+ student waitlist.', rotate: '1deg' },
+                { period: 'Aug 2023 · Sep 2025', role: 'Desk Assistant', company: 'ASU Housing · Engineering Dorms', desc: 'Front-desk shifts at the engineering residence hall. Handled check-ins, packages, and resident requests.', rotate: '-0.8deg' },
               ].map((e) => (
                 <div
                   key={e.role}
