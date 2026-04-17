@@ -185,6 +185,7 @@ export default function ExportModal({ open, onClose, textColor }) {
                 {/* Contact links - the actual payload */}
                 <div className="space-y-2.5">
                   {[
+                    { label: 'RESUME', value: 'Aariya Gage Resume.pdf', href: '/aariya-gage-resume.pdf' },
                     { label: 'EMAIL', value: 'aariyagage@gmail.com', href: 'mailto:aariyagage@gmail.com' },
                     { label: 'GITHUB', value: 'github.com/aariyagage', href: 'https://github.com/aariyagage' },
                     { label: 'LINKEDIN', value: 'linkedin.com/in/aariya-gage', href: 'https://www.linkedin.com/in/aariya-gage-88468924a' },
