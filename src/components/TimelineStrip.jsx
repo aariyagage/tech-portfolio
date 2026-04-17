@@ -1,20 +1,4 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-
-const LIFE_MARKERS = [
-  { pct: 0.03, color: '#E4FC50', label: 'First line of code', year: '2018' },
-  { pct: 0.12, color: '#C298FF', label: 'Made first video', year: '2019' },
-  { pct: 0.25, color: '#2D5AFF', label: 'Started CS at ASU', year: '2022' },
-  { pct: 0.38, color: '#3FE06A', label: 'Started creating content', year: '2023' },
-  { pct: 0.50, color: '#FF5020', label: 'Hit 10K followers', year: '2024' },
-  { pct: 0.65, color: '#C298FF', label: 'Built PostMail & Doto', year: '2025' },
-  { pct: 0.80, color: '#E4FC50', label: '26K on Instagram', year: '2025' },
-  { pct: 0.95, color: '#FFFFFF', label: "You're here.", year: 'Now' },
-]
-
-export default function TimelineStrip({ sections, palettes, progress, scrollX, sectionWidth, totalWidth, onJump }) {
-  const [hoveredMarker, setHoveredMarker] = useState(null)
-
+export default function TimelineStrip({ sections, palettes, progress, sectionWidth, totalWidth, onJump }) {
   const clips = sections.map((s, i) => ({
     ...s,
     color: palettes[s.palette].bg,
@@ -46,54 +30,9 @@ export default function TimelineStrip({ sections, palettes, progress, scrollX, s
         ))}
       </div>
 
-      {/* Marker rail */}
-      <div className="relative h-4 mx-1 flex items-center">
-        {LIFE_MARKERS.map((m, i) => (
-          <div
-            key={i}
-            className="absolute top-0 bottom-0 flex items-center z-20"
-            style={{ left: `${m.pct * 100}%` }}
-            onMouseEnter={() => setHoveredMarker(i)}
-            onMouseLeave={() => setHoveredMarker(null)}
-          >
-            {/* Diamond marker */}
-            <div
-              className="w-2.5 h-2.5 -ml-[5px] rotate-45 cursor-pointer transition-transform hover:scale-150"
-              style={{ background: m.color, boxShadow: `0 0 6px ${m.color}60` }}
-            />
-
-            {/* Tooltip */}
-            <AnimatePresence>
-              {hoveredMarker === i && (
-                <motion.div
-                  initial={{ opacity: 0, y: 6, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 6, scale: 0.9 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap pointer-events-none"
-                >
-                  <div
-                    className="px-3 py-2 rounded-lg text-center"
-                    style={{ background: '#1A1A1A', border: `1px solid ${m.color}40` }}
-                  >
-                    <p className="text-[10px] font-mono font-medium" style={{ color: m.color }}>{m.year}</p>
-                    <p className="text-[11px] text-white/80 mt-0.5">{m.label}</p>
-                  </div>
-                  {/* Arrow */}
-                  <div className="w-2 h-2 bg-[#1A1A1A] rotate-45 mx-auto -mt-1" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        ))}
-
-        {/* Thin connecting line behind markers */}
-        <div className="absolute top-1/2 left-0 right-0 h-px bg-neutral-300/50 -translate-y-1/2" />
-      </div>
-
       {/* Clips minimap */}
       <div
-        className="flex-1 relative rounded-lg overflow-hidden cursor-pointer mx-1"
+        className="flex-1 relative rounded-lg overflow-hidden cursor-pointer mx-1 mt-2"
         onClick={(e) => {
           const rect = e.currentTarget.getBoundingClientRect()
           onJump((e.clientX - rect.left) / rect.width)
