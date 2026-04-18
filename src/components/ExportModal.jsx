@@ -211,8 +211,8 @@ export default function ExportModal({ open, onClose, textColor }) {
 
                 {/* Resume download */}
                 <motion.a
-                  href="/Aariya_Gage_Resume.pdf"
-                  download
+                  href="/aariya-gage-resume.pdf"
+                  download="Aariya Gage Resume.pdf"
                   className="mt-4 w-full flex items-center justify-center gap-2 p-3 rounded-xl no-underline"
                   style={{ background: '#E4FC50', color: '#111' }}
                   initial={{ opacity: 0, y: 8 }}
