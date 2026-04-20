@@ -1,12 +1,13 @@
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
+import { useState, useRef, useEffect, useCallback, useMemo, lazy, Suspense } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import TimelineStrip from './components/TimelineStrip'
-import ExportModal from './components/ExportModal'
 import ProjectPreview from './components/ProjectPreview'
 import CountUp from './components/CountUp'
 import GitHubTicker from './components/GitHubTicker'
 import ShimmerBadge from './components/ShimmerBadge'
 import ParallaxDots from './components/ParallaxDots'
+
+const ExportModal = lazy(() => import('./components/ExportModal'))
 
 // Project detail data for the modal
 const PROJECT_DETAILS = [
@@ -546,11 +547,15 @@ function App() {
           />
         </div>
 
-        <ExportModal
-          open={exportOpen}
-          onClose={() => setExportOpen(false)}
-          textColor={currentText}
-        />
+        {exportOpen && (
+          <Suspense fallback={null}>
+            <ExportModal
+              open={exportOpen}
+              onClose={() => setExportOpen(false)}
+              textColor={currentText}
+            />
+          </Suspense>
+        )}
         <ProjectDetailModal
           project={openProject ? PROJECT_DETAILS.find((p) => p.id === openProject) : null}
           onClose={() => setOpenProject(null)}
@@ -668,11 +673,15 @@ function App() {
       </motion.div>
 
       {/* Export Modal */}
-      <ExportModal
-        open={exportOpen}
-        onClose={() => setExportOpen(false)}
-        textColor={currentText}
-      />
+      {exportOpen && (
+        <Suspense fallback={null}>
+          <ExportModal
+            open={exportOpen}
+            onClose={() => setExportOpen(false)}
+            textColor={currentText}
+          />
+        </Suspense>
+      )}
       <ProjectDetailModal
         project={openProject ? PROJECT_DETAILS.find((p) => p.id === openProject) : null}
         onClose={() => setOpenProject(null)}
@@ -909,6 +918,9 @@ function SectionContent({ id, textColor, onExport, onViewWork, isActive, isMobil
                 src="/aariya.webp"
                 alt="Aariya Gage"
                 className="absolute inset-0 w-full h-full object-cover object-top"
+                fetchpriority="high"
+                loading="eager"
+                decoding="async"
               />
             </motion.div>
 
@@ -1021,6 +1033,9 @@ function SectionContent({ id, textColor, onExport, onViewWork, isActive, isMobil
                   src="/postmail-preview.webp"
                   alt="PostMail screenshot"
                   className="w-full h-full object-cover object-top scale-110 origin-top"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
                 />
               </div>
               <div>
@@ -1049,6 +1064,9 @@ function SectionContent({ id, textColor, onExport, onViewWork, isActive, isMobil
                   src="/brev-preview.webp"
                   alt="Brev landing"
                   className="w-full h-full object-cover object-top"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
                 />
               </div>
               <div>
